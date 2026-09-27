@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fazer uma Doação - Nossa Senhora de Piedade</title>
+  <meta name="description" content="Doe qualquer valor por PIX, cartão de crédito ou boleto. Doação única ou mensal.">
+  <link rel="icon" href="assets/logo-cnspp.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html">
+    <img class="brand-logo" src="assets/logo-cnspp.png" alt="Logo da Associação" width="52" height="52">
+    <span>Associação Beneficente<br><b>Nossa Senhora de Piedade</b></span>
+  </a>
+  <nav aria-label="Menu principal">
+    <a href="index.html">Sobre Nós</a>
+    <a href="campanhas.html">Nossos Projetos</a>
+    <a href="transparencia.html">Transparência</a>
+    <a href="cadastro.html">Seja Voluntário</a>
+    <a class="btn btn-small" href="doacao.html">Doe Agora</a>
+  </nav>
+  <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+</header>
+<main class="donation-page">
+  <section class="donation-intro container">
+    <span class="eyebrow">DOE E TRANSFORME VIDAS</span><h1>Sua ajuda transforma vidas</h1>
+    <p class="muted">Não precisa criar conta: preencha os dados abaixo e escolha como pagar.</p>
+  </section>
+  <section class="donation-box container">
+    <div class="bar-title">Fazer sua doação</div>
+    <form id="doacaoForm" novalidate>
+      <div class="amounts" role="group" aria-label="Valor da doação">
+        <button type="button" class="amount active" data-value="30">R$30</button>
+        <button type="button" class="amount" data-value="50">R$50</button>
+        <button type="button" class="amount" data-value="100">R$100</button>
+        <button type="button" class="amount" data-value="other">Outro valor</button>
+      </div>
+      <div class="custom-value hidden"><label for="custom">Valor (R$)</label><input id="custom" type="number" min="1" step="0.01" inputmode="decimal"></div>
+      <label class="switch-line"><span>Doação mensal (apadrinhamento)</span><input id="monthly" type="checkbox"><span class="switch"></span></label>
+
+      <div class="donation-form">
+        <h3>1. Forma de pagamento</h3>
+        <div class="method-grid">
+          <label class="method"><input type="radio" name="forma" value="PIX" checked><span>⚡</span>PIX</label>
+          <label class="method"><input type="radio" name="forma" value="CARTAO_CREDITO"><span>💳</span>Cartão de crédito</label>
+          <label class="method"><input type="radio" name="forma" value="BOLETO"><span>🧾</span>Boleto</label>
+        </div>
+
+        <h3>2. Seus dados</h3>
+        <div class="form-grid">
+          <div class="input-group full">
+            <label>Tipo de doador</label>
+            <div class="check-grid">
+              <label><input type="radio" name="tipoPessoa" value="PF" checked> Pessoa física</label>
+              <label><input type="radio" name="tipoPessoa" value="PJ"> Pessoa jurídica (empresa)</label>
+            </div>
+          </div>
+          <div class="input-group full"><label for="dNome" id="lblNome">Nome completo *</label><input id="dNome" maxlength="150" required autocomplete="name"></div>
+          <div class="input-group"><label for="dEmail">E-mail *</label><input id="dEmail" type="email" maxlength="100" required autocomplete="email"></div>
+          <div class="input-group"><label for="dTelefone">Telefone / WhatsApp</label><input id="dTelefone" type="tel" maxlength="20" autocomplete="tel" placeholder="(81) 99999-9999"></div>
+          <div class="input-group full"><label for="dDoc" id="lblDoc">CPF</label><input id="dDoc" maxlength="18" inputmode="numeric"><small id="docHint">Opcional para PIX e cartão. Obrigatório para boleto.</small></div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary donate-submit" id="donateBtn">Confirmar Doação</button>
+    </form>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© 2026 Associação Beneficente Nossa Senhora de Piedade<br>📍 Av. Ayrton Senna da Silva, 1100 - Piedade - PE<br>📞 (81) 99265-5586</span>
+    <div><a href="index.html">Início</a><a href="transparencia.html">Transparência</a><a href="doacao.html">Doe Agora</a><a class="restrito" href="login.html">Área restrita</a></div>
+  </div>
+</footer>
+<div id="chatbot-root"></div>
+<script src="vendor/sweetalert2.all.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

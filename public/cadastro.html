@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Nossa Senhora de Piedade</title>
+  <meta name="description" content="Cadastre-se como voluntário ou doador da Associação Nossa Senhora de Piedade.">
+  <link rel="icon" href="assets/logo-cnspp.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html">
+    <img class="brand-logo" src="assets/logo-cnspp.png" alt="Logo da Associação" width="52" height="52">
+    <span>Associação Beneficente<br><b>Nossa Senhora de Piedade</b></span>
+  </a>
+  <nav aria-label="Menu principal">
+    <a href="index.html">Sobre Nós</a>
+    <a href="campanhas.html">Nossos Projetos</a>
+    <a href="transparencia.html">Transparência</a>
+    <a href="cadastro.html" class="active">Seja Voluntário</a>
+    <a class="btn btn-small" href="doacao.html">Doe Agora</a>
+  </nav>
+  <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+</header>
+<main class="auth-page container">
+  <div class="auth-box wide">
+    <h2>Faça parte</h2>
+    <p>Escolha como você deseja ajudar.</p>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" data-tab="voluntario" class="active">🤝 Quero ser voluntário</button>
+      <button type="button" role="tab" data-tab="doador">❤️ Quero ser doador</button>
+    </div>
+
+    <form id="voluntarioForm" data-painel="voluntario" novalidate>
+      <div class="form-grid">
+        <div class="input-group full"><label for="vNome">Nome completo *</label><input id="vNome" maxlength="100" required autocomplete="name"></div>
+        <div class="input-group"><label for="vEmail">E-mail *</label><input id="vEmail" type="email" maxlength="100" required autocomplete="email"></div>
+        <div class="input-group"><label for="vTelefone">Telefone / WhatsApp *</label><input id="vTelefone" type="tel" maxlength="20" required autocomplete="tel" placeholder="(81) 99999-9999"></div>
+        <div class="input-group"><label for="vProfissao">Especialidade / profissão</label><input id="vProfissao" maxlength="100" placeholder="Ex.: pedagoga, enfermeiro, estudante"></div>
+        <div class="input-group">
+          <label for="vArea">Área de interesse *</label>
+          <select id="vArea" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Recreação</option><option>Apoio Escolar</option><option>Saúde</option><option>Eventos</option>
+            <option>Arrecadação de Doações</option><option>Comunicação</option><option>Cozinha e Alimentação</option><option>Administrativo</option>
+          </select>
+        </div>
+        <div class="input-group full">
+          <label>Disponibilidade — dias *</label>
+          <div class="check-grid" id="vDias">
+            <label><input type="checkbox" value="Segunda"> Seg</label><label><input type="checkbox" value="Terça"> Ter</label>
+            <label><input type="checkbox" value="Quarta"> Qua</label><label><input type="checkbox" value="Quinta"> Qui</label>
+            <label><input type="checkbox" value="Sexta"> Sex</label><label><input type="checkbox" value="Sábado"> Sáb</label>
+            <label><input type="checkbox" value="Domingo"> Dom</label>
+          </div>
+        </div>
+        <div class="input-group full">
+          <label>Disponibilidade — turnos *</label>
+          <div class="check-grid" id="vTurnos">
+            <label><input type="checkbox" value="Manhã"> Manhã</label><label><input type="checkbox" value="Tarde"> Tarde</label><label><input type="checkbox" value="Noite"> Noite</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Enviar inscrição</button>
+    </form>
+
+    <form id="doadorForm" data-painel="doador" class="hidden" novalidate>
+      <div class="form-grid">
+        <div class="input-group full">
+          <label>Tipo de doador</label>
+          <div class="check-grid">
+            <label><input type="radio" name="cTipoPessoa" value="PF" checked> Pessoa física</label>
+            <label><input type="radio" name="cTipoPessoa" value="PJ"> Pessoa jurídica</label>
+          </div>
+        </div>
+        <div class="input-group full"><label for="cNome" id="cLblNome">Nome completo *</label><input id="cNome" maxlength="150" required></div>
+        <div class="input-group"><label for="cEmail">E-mail *</label><input id="cEmail" type="email" maxlength="100" required></div>
+        <div class="input-group"><label for="cTelefone">Telefone / WhatsApp</label><input id="cTelefone" type="tel" maxlength="20" placeholder="(81) 99999-9999"></div>
+        <div class="input-group full"><label for="cDoc" id="cLblDoc">CPF</label><input id="cDoc" maxlength="18" inputmode="numeric"></div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Concluir cadastro</button>
+    </form>
+    <p class="auth-link center" style="margin-top:18px">Quer doar agora? <a href="doacao.html">Ir para a doação</a></p>
+  </div>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© 2026 Associação Beneficente Nossa Senhora de Piedade<br>📍 Av. Ayrton Senna da Silva, 1100 - Piedade - PE<br>📞 (81) 99265-5586</span>
+    <div><a href="index.html">Início</a><a href="transparencia.html">Transparência</a><a href="doacao.html">Doe Agora</a><a class="restrito" href="login.html">Área restrita</a></div>
+  </div>
+</footer>
+<div id="chatbot-root"></div>
+<script src="vendor/sweetalert2.all.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

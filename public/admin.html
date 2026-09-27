@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - Nossa Senhora de Piedade</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/logo-cnspp.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">Painel Admin</div>
+    <nav class="admin-nav" aria-label="Seções do painel">
+      <a data-secao="geral" class="active">📊 Visão Geral</a>
+      <a data-secao="insights">✨ Insights (IA)</a>
+      <a data-secao="doacoes">❤️ Doações</a>
+      <a data-secao="doadores">🙋 Doadores</a>
+      <a data-secao="campanhas">📦 Campanhas</a>
+      <a data-secao="voluntarios">👥 Voluntários</a>
+      <a data-secao="escalas">🗓️ Escalas</a>
+      <a data-secao="relatorios">📄 Relatórios</a>
+      <a data-secao="usuarios" data-somente-admin class="hidden">🔐 Usuários</a>
+    </nav>
+    <div class="admin-sidebar-footer">
+      <a href="index.html" target="_blank" rel="noopener" class="admin-site-link">🌐 Ver site</a>
+      <a href="index.html" class="logout-link" id="btnSair">⬅ Sair do Painel</a>
+    </div>
+  </aside>
+
+  <main class="admin-content">
+    <header class="admin-header">
+      <div>
+        <h1 id="tituloSecao">Visão Geral</h1>
+        <p>Centro de controle da Associação Nossa Senhora de Piedade.</p>
+      </div>
+      <div class="user-profile">
+        <div class="avatar" id="adminAvatar">A</div>
+        <span id="adminNome">Administrador</span>
+      </div>
+    </header>
+
+    <!-- VISÃO GERAL -->
+    <section class="admin-section active" data-secao="geral">
+      <div class="admin-metrics">
+        <div class="metric-card"><div class="metric-icon" style="background:#e3f2fd;color:#1e88e5;">👥</div><div class="metric-info"><span>Voluntários ativos</span><strong id="mVoluntarios">—</strong></div></div>
+        <div class="metric-card"><div class="metric-icon" style="background:#e8f5e9;color:#43a047;">❤️</div><div class="metric-info"><span>Doações confirmadas no mês</span><strong id="mDoacoes">—</strong></div></div>
+        <div class="metric-card"><div class="metric-icon" style="background:#fff3e0;color:#fb8c00;">📦</div><div class="metric-info"><span>Itens recebidos</span><strong id="mItens">—</strong></div></div>
+        <div class="metric-card"><div class="metric-icon" style="background:#fce4ec;color:#d81b60;">⏳</div><div class="metric-info"><span>Pendências</span><strong id="mPendencias">—</strong></div></div>
+      </div>
+      <div class="admin-card">
+        <div class="card-header"><h3>Voluntários aguardando aprovação</h3><button class="btn-action secondary" data-ir="voluntarios">Ver todos</button></div>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Nome</th><th>Área</th><th>Disponibilidade</th><th>Ação</th></tr></thead><tbody id="tbPendentes"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- INSIGHTS (IA) -->
+    <section class="admin-section" data-secao="insights">
+      <div class="admin-card">
+        <div class="card-header"><h3>Recomendações da IA</h3><span class="ia-badge">✨ Gerado automaticamente</span></div>
+        <ul class="reco-list" id="iaRecomendacoes"></ul>
+      </div>
+      <div class="admin-card">
+        <div class="card-header"><h3>Arrecadação mensal e previsão</h3><span class="ia-badge">📈 Regressão linear</span></div>
+        <div class="kpis" id="iaKpis"></div>
+        <div class="chart" id="iaGrafico" role="img" aria-label="Gráfico de arrecadação mensal"></div>
+        <p class="text-muted" style="margin-top:12px">Barra listrada = previsão do próximo mês calculada a partir da tendência dos meses anteriores (somente doações confirmadas).</p>
+      </div>
+      <div class="cards-2">
+        <div class="admin-card">
+          <div class="card-header"><h3>Alerta de materiais</h3><span class="ia-badge">⏱️ Ritmo de recebimento</span></div>
+          <div class="table-responsive"><table class="admin-table"><thead><tr><th>Item</th><th>Faltam</th><th>Previsão</th><th>Nível</th></tr></thead><tbody id="iaMateriais"></tbody></table></div>
+        </div>
+        <div class="admin-card">
+          <div class="card-header"><h3>Perfil dos voluntários</h3></div>
+          <div id="iaVoluntarios"></div>
+          <h3 style="margin-top:24px">Doações por forma de pagamento</h3>
+          <div id="iaFormas"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOAÇÕES -->
+    <section class="admin-section" data-secao="doacoes">
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Doações financeiras</h3>
+          <div class="admin-toolbar">
+            <select id="filtroDoacoes" aria-label="Filtrar por status">
+              <option value="">Todos os status</option><option value="PENDENTE">Pendentes</option><option value="CONFIRMADO">Confirmadas</option><option value="CANCELADO">Canceladas</option><option value="FALHOU">Falhou</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Data</th><th>Doador</th><th>Valor</th><th>Tipo</th><th>Pagamento</th><th>Status</th><th>Ações</th></tr></thead><tbody id="tbDoacoes"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- DOADORES -->
+    <section class="admin-section" data-secao="doadores">
+      <div class="admin-card">
+        <div class="card-header"><h3>Doadores cadastrados</h3></div>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Nome / Razão social</th><th>Contato</th><th>CPF/CNPJ</th><th>Doações</th><th>Total confirmado</th><th>Ações</th></tr></thead><tbody id="tbDoadores"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- CAMPANHAS -->
+    <section class="admin-section" data-secao="campanhas">
+      <div class="admin-card">
+        <div class="card-header"><h3>Campanhas</h3><button class="btn-action" id="btnNovaCampanha">+ Nova campanha</button></div>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Título</th><th>Período</th><th>Meta</th><th>Itens</th><th>Status</th><th>Ações</th></tr></thead><tbody id="tbCampanhas"></tbody></table></div>
+      </div>
+      <div class="admin-card">
+        <div class="card-header"><h3>Necessidades de materiais</h3><button class="btn-action" id="btnNovaNecessidade">+ Nova necessidade</button></div>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Item</th><th>Campanha</th><th>Progresso</th><th>Status</th><th>Ações</th></tr></thead><tbody id="tbNecessidades"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- VOLUNTÁRIOS -->
+    <section class="admin-section" data-secao="voluntarios">
+      <div class="admin-card">
+        <div class="card-header">
+          <h3>Voluntários</h3>
+          <div class="admin-toolbar">
+            <select id="filtroVoluntarios" aria-label="Filtrar por status">
+              <option value="">Todos</option><option value="PENDENTE">Pendentes</option><option value="APROVADO">Aprovados</option><option value="REPROVADO">Reprovados</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Nome</th><th>Contato</th><th>Área / profissão</th><th>Disponibilidade</th><th>Status</th><th>Ações</th></tr></thead><tbody id="tbVoluntarios"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- ESCALAS -->
+    <section class="admin-section" data-secao="escalas">
+      <div class="admin-card">
+        <div class="card-header"><h3>Escalas de voluntários</h3><button class="btn-action" id="btnNovaEscala">+ Nova escala</button></div>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Quando</th><th>Atividade</th><th>Voluntário</th><th>Local</th><th>Ações</th></tr></thead><tbody id="tbEscalas"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- RELATÓRIOS -->
+    <section class="admin-section" data-secao="relatorios">
+      <div class="admin-card">
+        <div class="card-header"><h3>Relatórios de impacto</h3><button class="btn-action" id="btnNovoRelatorio">+ Novo relatório</button></div>
+        <p class="text-muted">Tudo o que for cadastrado aqui aparece na página pública de Transparência. Anexe os balanços em PDF (até 10 MB).</p>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Título / período</th><th>Resultados</th><th>Documentos</th><th>Ações</th></tr></thead><tbody id="tbRelatorios"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- USUÁRIOS -->
+    <section class="admin-section" data-secao="usuarios">
+      <div class="admin-card">
+        <div class="card-header"><h3>Usuários do painel</h3><button class="btn-action" id="btnNovoUsuario">+ Novo usuário</button></div>
+        <p class="text-muted"><b>Administrador</b>: acesso total. <b>Operador</b>: tudo, exceto gerenciar usuários.</p>
+        <div class="table-responsive"><table class="admin-table"><thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Ações</th></tr></thead><tbody id="tbUsuarios"></tbody></table></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="vendor/sweetalert2.all.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

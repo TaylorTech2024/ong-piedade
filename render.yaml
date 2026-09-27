@@ -1,0 +1,25 @@
+# Configuração do Render (Blueprint). Cria o serviço web gratuito automaticamente.
+# As variáveis marcadas com "sync: false" são pedidas na tela durante a criação.
+services:
+  - type: web
+    name: ong-piedade
+    runtime: node
+    plan: free
+    region: virginia # mesma região do TiDB (us-east-1) = menos atraso
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_NAME
+        value: ong_piedade_db
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false

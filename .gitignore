@@ -1,0 +1,12 @@
+# Dependências (o Render instala sozinho com "npm ci")
+node_modules/
+
+# NUNCA suba senhas para o GitHub
+.env
+.env.*
+!.env.example
+
+# Logs e arquivos do sistema
+*.log
+.DS_Store
+Thumbs.db
